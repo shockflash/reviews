@@ -1,2 +1,4 @@
 reviews/test.sqlite
+env
+testapp/test.sqlite
 *.pyc

@@ -1,38 +1,43 @@
 from django import template
+from classytags.core import Tag, Options
+from classytags.arguments import Argument
 
 register = template.Library()
 
-class BaseCommentNode(template.Node):
-
-    @classmethod
-    def handle_token(cls, parser, token):
-        pass
-
-class ReviewCountNode(BaseCommentNode):
-    """Insert a count of comments into the context."""
-    def get_context_value_from_queryset(self, context, qs):
-        return qs.count()
-
-@register.tag
-def get_review_count(parser, token):
-    """
-    Gets the review count for the given params and populates the template
-    context with a variable containing that value, whose name is defined by the
-    'as' clause.
-
-    Syntax::
-
-        {% get_review_count for [object] as [varname]  %}
-        {% get_review_count for [app].[model] [object_id] as [varname]  %}
-
-    Example usage::
-
-        {% get_comment_count for event as comment_count %}
-        {% get_comment_count for calendar.event event.id as comment_count %}
-        {% get_comment_count for calendar.event 17 as comment_count %}
-
-    """
-    return ReviewCountNode.handle_token(parser, token)
+class BaseHandler(Tag):
+    options = Options(
+        'for',
+        Argument('name'),
+        'limit',
+        Argument('limit', required=False, resolve=False),
+        'as',
+        Argument('varname', required=False, resolve=False)
+    )
 
 
-# {% get_review_form for [object] type [blabla] as [varname] %}
+    def render(self, context):
+        items = self.kwargs.items()
+        kwargs = dict([(key, value.resolve(context)) for key, value in items])
+        kwargs.update(self.blocks)
+
+        # do something generic with the data
+        kwargs['name'] = kwargs['name'] + ' test'
+
+        return self.render_tag(context, **kwargs)
+
+class Hello(BaseHandler):
+    name = 'hello'
+
+    def render_tag(self, context, name, varname, limit = False ):
+        output = 'hello %s' % name
+
+        if limit:
+            output += " limit %s" % limit
+
+        if varname:
+            context[varname] = output
+            return ''
+        else:
+            return output
+
+register.tag(Hello)

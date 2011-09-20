@@ -3,9 +3,15 @@
 
 {% block content %}
 
+<p>Objekt: {{ object.name }}</p>
+
 Anzahl:
 
-{% get_review_count for object as review_count %}
+<br><br>
+1. {% hello for "you" %}<br>
+2. {% hello for "you" limit 20 %}<br>
+3. {% hello for "world" as var %}       Said: {{ var }}<br>
+4. {% hello for "world" limit 20 as var %}       Said: {{ var }}<br>
 
 
 {% endblock %}

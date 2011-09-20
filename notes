@@ -1,0 +1,24 @@
+{% get_review_count for entry as review_count %}
+{% get_review_count for blog.entry 14 as review_count %}
+
+{% render_review_list for event %}
+{% render_review_list for event offset 10 limit 5 %}
+{% render_review_list for event offset 10 limit 5 as list %}
+{% render_review_list for event offset 10 limit 5 with "template2.html" as list %}
+
+# best reviews (most viewed? best rated?)
+{% render_review_previewlist for event offset 10 limit 5 with "template2.html" as list %}
+
+{% get_review_list for event as review_list %}
+
+{% get_review_permalink [comment_obj] [format_string] %}
+{% get_review_permalink comment "#c%(id)s-by-%(user_name)s" %}
+
+{% render_review_form for event %}
+{% render_review_form for event with "templateexample.html" %}
+{% render_review_form for event with "templateexample.html" as form %}
+
+{% get_review_form for event as form %}
+
+
+{% TAG for [OBJECT] type [TYPESTRING] OFFSET 10 LIMIT 20 as [TARGET] %}
