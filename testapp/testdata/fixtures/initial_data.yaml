@@ -1,0 +1,37 @@
+- fields:
+        date_joined: 2010-11-05 17:50:02
+        email: eeeee@ddddd.de
+        first_name: ''
+        groups: []
+        is_active: true
+        is_staff: true
+        is_superuser: true
+        last_login: 2010-11-05 17:50:27
+        last_name: ''
+        password: sha1$134a6$ac5311354812b22d0cdb3b5bebaad09730b322f3
+        user_permissions: []
+        username: admin
+  model: auth.user
+  pk: 1
+  
+  
+- fields:
+        name: ob1
+  model: testdata.testmodel1
+  pk: 1
+  
+- fields:
+        name: ob2
+  model: testdata.testmodel1
+  pk: 2
+  
+  
+- fields:
+        name: another ob test 1
+  model: testdata.testmodel2
+  pk: 1
+  
+- fields:
+        name: another ob test 2
+  model: testdata.testmodel2
+  pk: 2

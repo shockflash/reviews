@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+
+<a href="{% url testmodel1_detail 1 %}">TestModel1 Object 1</a><br>
+<a href="{% url testmodel1_detail 2 %}">TestModel1 Object 2</a><br>
+<br>
+<a href="{% url testmodel2_detail 1 %}">TestModel2 Object 1</a><br>
+<a href="{% url testmodel2_detail 2 %}">TestModel2 Object 2</a><br>
+
+
+
+{% endblock %}

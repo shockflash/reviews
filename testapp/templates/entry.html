@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% load reviews %}
+
+{% block content %}
+
+Anzahl:
+
+{% get_review_count for object as review_count %}
+
+
+{% endblock %}
