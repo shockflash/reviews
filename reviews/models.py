@@ -11,6 +11,21 @@ from managers import ReviewManager
 
 REVIEW_MAX_LENGTH = getattr(settings,'REVIEW_MAX_LENGTH',3000)
 
+class Category(models.Model):
+    code = models.CharField(_('category code'), max_length = 200)
+
+    class Meta:
+        verbose_name = _('review category')
+        verbose_name_plural = _('review categories')
+
+class CategorySegment(models.Model):
+    title    = models.CharField(max_length = 200)
+    category = models.ForeignKey(Category)
+
+    class Meta:
+        verbose_name = _('review category segment')
+        verbose_name_plural = _('review category segments')
+
 class BaseReviewAbstractModel(models.Model):
     """
     An abstract base class that any custom review models probably should
@@ -175,32 +190,14 @@ class ReviewFlag(models.Model):
 
 class ReviewSegment(models.Model):
     """
-    Every review has a base-text, and in addition to this it can have multiple segments. 
-    Each segment has an own text and an own 
+    Every review has a base-text, and in addition to this it can have multiple segments.
+    Each segment has an own text and an own
     """
-    review    = models.ForeignKey(Review, verbose_name=_('review'), related_name="flags")
-    rating    = models.IntegerField()
-    text      = models.TextField(_('review'), max_length=REVIEW_MAX_LENGTH)
-    segment   = models.ForeignKey(ReviewTypeSegment)
+    review    = models.ForeignKey(Review, verbose_name=_('review'), related_name="segments")
+    rating    = models.IntegerField(_('rating'))
+    text      = models.TextField(_('review text'), max_length=REVIEW_MAX_LENGTH)
+    segment   = models.ForeignKey(CategorySegment, verbose_name=_('review category segment'))
 
     class Meta:
         verbose_name = _('review segment')
         verbose_name_plural = _('review segments')
-
-
-class Category(models.Model):
-    code = models.CharField()
-
-    class Meta:
-        verbose_name = _('review type')
-        verbose_name_plural = _('review types')
-
-class CategorySegment(models.Model):
-    title    = models.CharField()
-    category = models.ForeignKey(ReviewCategory)
-
-    class Meta:
-        verbose_name = _('review type segment')
-        verbose_name_plural = _('review type segments')
-
-

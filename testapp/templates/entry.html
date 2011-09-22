@@ -12,6 +12,8 @@ Anzahl:
 2. {% hello for "you" limit 20 %}<br>
 3. {% hello for "world" as var %}       Said: {{ var }}<br>
 4. {% hello for "world" limit 20 as var %}       Said: {{ var }}<br>
+5. {% hello for "world" offset 10 limit 20 as var %}       Said: {{ var }}<br>
+6. {% hello for "world" category "targo" offset 10 limit 20 as var %}       Said: {{ var }}<br>
 
 
 {% endblock %}

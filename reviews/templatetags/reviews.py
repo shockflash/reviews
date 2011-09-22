@@ -8,6 +8,10 @@ class BaseHandler(Tag):
     options = Options(
         'for',
         Argument('name'),
+        'category',
+        Argument('category', required=False, resolve=False),
+        'offset',
+        Argument('offset', required=False, resolve=False),
         'limit',
         Argument('limit', required=False, resolve=False),
         'as',
@@ -28,8 +32,14 @@ class BaseHandler(Tag):
 class Hello(BaseHandler):
     name = 'hello'
 
-    def render_tag(self, context, name, varname, limit = False ):
+    def render_tag(self, context, name, varname, category = False, offset = False, limit = False ):
         output = 'hello %s' % name
+
+        if category:
+            output += " category %s" % category
+
+        if offset:
+            output += " offset %s" % offset
 
         if limit:
             output += " limit %s" % limit
