@@ -17,4 +17,6 @@ urlpatterns = patterns('',
           'template_name': 'entry.html'
         },
         'testmodel2_detail'),
+
+     url(r'reviews/', include('reviews.urls')),
 )

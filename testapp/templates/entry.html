@@ -1,19 +1,32 @@
 {% extends "base.html" %}
-{% load reviews %}
+{% load reviewtags %}
 
 {% block content %}
 
-<p>Objekt: {{ object.name }}</p>
+<p>Object: {{ object.name }}</p>
 
-Anzahl:
 
-<br><br>
-1. {% hello for "you" %}<br>
-2. {% hello for "you" limit 20 %}<br>
-3. {% hello for "world" as var %}       Said: {{ var }}<br>
-4. {% hello for "world" limit 20 as var %}       Said: {{ var }}<br>
-5. {% hello for "world" offset 10 limit 20 as var %}       Said: {{ var }}<br>
-6. {% hello for "world" category "targo" offset 10 limit 20 as var %}       Said: {{ var }}<br>
+<h1>render_review_form</h1>
+{% render_review_form for object category 'example1' %}
+
+
+<h1>get_review_form</h1>
+{% get_review_form for object category 'ex' as form %}
+{{ form.as_p }}
+
+
+<h1>get_review_count</h1>
+1. direct: {% get_review_count for object %}<br>
+2. with "as": {% get_review_count for object as count %} said {{ count }}<br>
+
+
+<h1>get_review_list</h1>
+{% get_review_list for object as review_list %}
+
+{% for review in review_list %}
+  Review: {{ review.text }}
+{% endfor %}
+
 
 
 {% endblock %}

@@ -17,6 +17,7 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
@@ -25,6 +26,18 @@ DATABASES = {
         'PASSWORD': '',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+    }
+}
+"""
+
+DATABASES = {
+    'default': {
+        'ENGINE' : 'django.contrib.gis.db.backends.postgis',
+        'HOST': 'localhost',
+        'NAME': 'vengalo',
+        'USER': 'django',
+        'PASSWORD': 'django',
+        'PORT': '5432',
     }
 }
 

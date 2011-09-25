@@ -7,7 +7,7 @@ from django.db import models
 from django.core import urlresolvers
 from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
-from managers import ReviewManager
+from reviews.managers import ReviewManager
 
 REVIEW_MAX_LENGTH = getattr(settings,'REVIEW_MAX_LENGTH',3000)
 
