@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load reviewtags %}
+
+{% block content %}
+
+<a href="{% url index %}">Startpage</a>
+
+<h2 class="title">Review:</h2>
+
+<br>
+
+For: {{ object.content_object.name }}<br> <!-- this works only because all our reviewed object have a name field!-->
+From: <a href="mailto:{{ object.user_email }}">{{ object.user_name }}</a><br>
+Date: {{ object.submit_date }}<br>
+<br>
+{{ object.text|linebreaksbr|truncatewords:50 }}<br>
+
+-
+{% for segment in object.segments.all %}
+# TODO 
+{% endfor %}
+-
+
+{% endblock %}

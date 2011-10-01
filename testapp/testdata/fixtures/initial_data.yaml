@@ -16,22 +16,67 @@
   
   
 - fields:
-        name: ob1
-  model: testdata.testmodel1
+        name: Fantastaroza Speed
+  model: testdata.car
   pk: 1
   
 - fields:
-        name: ob2
-  model: testdata.testmodel1
+        name: Cargo Transporter
+  model: testdata.car
   pk: 2
   
   
 - fields:
-        name: another ob test 1
-  model: testdata.testmodel2
+        name: Restaurant Example on the beach
+  model: testdata.restaurant
   pk: 1
   
 - fields:
-        name: another ob test 2
-  model: testdata.testmodel2
+        name: Imbiss NE
+  model: testdata.restaurant
   pk: 2
+  
+- fields:
+        code: Car
+  model: reviews.category
+  pk: 1
+  
+- fields:
+        code: Restaurant
+  model: reviews.category
+  pk: 2
+  
+- fields:
+        title: Design
+        position: 1
+        category: 1
+  model: reviews.categorysegment
+  pk: 1
+  
+- fields:
+        title: Handling
+        position: 2
+        category: 1
+  model: reviews.categorysegment
+  pk: 2
+  
+- fields:
+        title: Food
+        position: 1
+        category: 2
+  model: reviews.categorysegment
+  pk: 3
+  
+- fields:
+        title: Service
+        position: 2
+        category: 2
+  model: reviews.categorysegment
+  pk: 5
+  
+- fields:
+        title: Ambience
+        position: 3
+        category: 2
+  model: reviews.categorysegment
+  pk: 6

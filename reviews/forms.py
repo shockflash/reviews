@@ -12,15 +12,38 @@ from django.utils.text import get_text_list
 from django.utils.translation import ungettext, ugettext_lazy as _
 from django.forms.formsets import formset_factory
 from reviews.models import Review, ReviewSegment, Category, CategorySegment
+from reviews import signing
 
 REVIEW_MAX_LENGTH = getattr(settings,'REVIEW_MAX_LENGTH', 3000)
+REVIEWS_ALLOW_PROFANITIES = getattr(settings,'REVIEWS_ALLOW_PROFANITIES', False)
+
+class SignedCharField(forms.CharField):
+    """
+    SignedCharField is a normal char field, but the content is signed with
+    the django Signer to prevent manipulation. Best used together with
+    """
+
+    def prepare_value(self, value):
+        # test if the value is already signed. if yes, we do not resign it
+        try:
+            signing.loads(value)
+            return value
+        except signing.BadSignature:
+            return signing.dumps(value)
+
+    def to_python(self, value):
+        """ a broken/manipulated value will raise an exception of
+        type signing.BadSignature. We do not catch it, it should raise """
+
+        original = signing.loads(value)
+        return original
 
 def clean_text(text):
     """
     If REVIEWS_ALLOW_PROFANITIES is False, check that the review doesn't
     contain anything in PROFANITIES_LIST.
     """
-    if settings.REVIEWS_ALLOW_PROFANITIES == False:
+    if REVIEWS_ALLOW_PROFANITIES == False:
         bad_words = [w for w in settings.PROFANITIES_LIST if w in text.lower()]
         if bad_words:
             plural = len(bad_words) > 1
@@ -44,6 +67,7 @@ class ReviewSecurityForm(forms.Form):
         self.target_object = target_object
         if initial is None:
             initial = {}
+        initial['category'] = category
         initial.update(self.generate_security_data())
 
         """ the category of this review. Needed for the form set """
@@ -129,9 +153,14 @@ class ReviewDetailsForm(ReviewSecurityForm):
     """
     name          = forms.CharField(label=_("Name"), max_length=50)
     email         = forms.EmailField(label=_("Email address"))
-    url           = forms.URLField(label=_("URL"), required=False)
     text          = forms.CharField(label=_('Review'), widget=forms.Textarea,
                                     max_length=REVIEW_MAX_LENGTH)
+
+    """ SignedCharField is used to hold the category value, but with a digital
+    signature attached. This way we can route it through the form, but can be
+    sure that it is not changed. If not done this way, the user could change the
+    category of the review, which is not good """
+    category      = SignedCharField(max_length=200, widget=forms.HiddenInput)
 
     def get_review_object(self):
         """
@@ -170,8 +199,8 @@ class ReviewDetailsForm(ReviewSecurityForm):
             object_pk    = force_unicode(self.target_object._get_pk_val()),
             user_name    = self.cleaned_data["name"],
             user_email   = self.cleaned_data["email"],
-            user_url     = self.cleaned_data["url"],
-            review      = self.cleaned_data["text"],
+            text         = self.cleaned_data["text"],
+            category     = Category.objects.get(code=self.cleaned_data["category"]),
             submit_date  = datetime.datetime.now(),
             site_id      = settings.SITE_ID,
             is_public    = True,
@@ -182,10 +211,10 @@ class ReviewDetailsForm(ReviewSecurityForm):
         cat = Category.objects.get(code=self.category)
 
         initial = []
-        for segment in cat.categorysegment_set.all():
+        for segment in cat.categorysegment_set.order_by('position'):
             initial.append({
                   'segment_pk': segment.id,
-                  'text': 'fdshz erzws'
+                  'text': ''
                 })
 
         ReviewSegmentFormSet = formset_factory(ReviewSegmentForm, extra=0)
@@ -205,7 +234,6 @@ class ReviewDetailsForm(ReviewSecurityForm):
             object_pk = new.object_pk,
             user_name = new.user_name,
             user_email = new.user_email,
-            user_url = new.user_url,
         )
         for old in possible_duplicates:
             if old.submit_date.date() == new.submit_date.date() and old.review == new.review:
@@ -244,9 +272,9 @@ class ReviewSegmentBaseForm(forms.Form):
         return self.segment
 
 class ReviewSegmentForm(ReviewSegmentBaseForm):
+    rating = forms.IntegerField(label=_('Rating'))
     text   = forms.CharField(label=_('Review'), widget=forms.Textarea,
                             max_length=REVIEW_MAX_LENGTH)
-    rating = forms.IntegerField(label=_('Rating'))
 
     def clean_text(self):
         return clean_text(self.cleaned_data["text"])

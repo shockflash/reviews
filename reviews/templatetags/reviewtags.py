@@ -24,7 +24,7 @@ class BaseHandler(Tag):
         'for',
         Argument('name'),
         'category',
-        Argument('category', required=False, resolve=False),
+        Argument('category', required=False),
         'as',
         Argument('varname', required=False, resolve=False)
     )

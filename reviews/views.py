@@ -1,6 +1,6 @@
 from django import http
 from django.conf import settings
-from django.contrib.comments.views.utils import next_redirect, confirmation_view
+from django.contrib.comments.views.utils import next_redirect
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
 from django.db import models
 from django.shortcuts import render_to_response
@@ -8,9 +8,12 @@ from django.template import RequestContext
 from django.template.loader import render_to_string
 from django.utils.html import escape
 from django.views.decorators.http import require_POST
-import reviews
-from reviews import signals
 from django.views.decorators.csrf import csrf_protect
+from reviews.utils import confirmation_view
+from reviews import signals, signing
+import reviews
+
+
 
 class ReviewPostBadRequest(http.HttpResponseBadRequest):
     """
@@ -70,9 +73,10 @@ def post_review(request, next=None, using=None):
     # Do we want to preview the review?
     preview = "preview" in data
 
-    # Construct the comment form
-    form = reviews.get_form()(target, data=data)
-    # TODO: hier fehlt die category!
+    category = signing.loads(data['category'])
+
+    # Construct the review form
+    form = reviews.get_form()(target, data=data, category=category)
 
     # Check security information
     if form.security_errors():
@@ -80,19 +84,19 @@ def post_review(request, next=None, using=None):
             "The review form failed security verification: %s" % \
                 escape(str(form.security_errors())))
 
-    # If there are errors or if we requested a preview show the comment
+    # If there are errors or if we requested a preview show the review
     if form.errors or preview:
         template_list = [
             # Now the usual directory based template heirarchy.
-            "comments/%s/%s/preview.html" % (model._meta.app_label, model._meta.module_name),
-            "comments/%s/preview.html" % model._meta.app_label,
+            "reviews/%s/%s/preview.html" % (model._meta.app_label, model._meta.module_name),
+            "reviews/%s/preview.html" % model._meta.app_label,
 
             # like before, but with optional different template per category
             "reviews/%s/%s/preview_%s.html" % (model._meta.app_label, model._meta.module_name, category),
             "reviews/%s/preview_%s.html" % (model._meta.app_label, category),
             "reviews/preview_%s.html" % category,
 
-            "comments/preview.html",
+            "reviews/preview.html",
         ]
         return render_to_response(
             template_list, {
@@ -109,7 +113,7 @@ def post_review(request, next=None, using=None):
     if request.user.is_authenticated():
         review.user = request.user
 
-    # Signal that the comment is about to be saved
+    # Signal that the review is about to be saved
     responses = signals.review_will_be_posted.send(
         sender  = review.__class__,
         review = review,
@@ -121,7 +125,7 @@ def post_review(request, next=None, using=None):
             return ReviewPostBadRequest(
                 "review_will_be_posted receiver %r killed the review" % receiver.__name__)
 
-    # Save the comment and signal that it was saved
+    # Save the review and signal that it was saved
     review.save()
     signals.review_was_posted.send(
         sender  = review.__class__,

@@ -3,13 +3,12 @@
 
 {% block content %}
 
+  <h2>Review a car</h2>
+  <a href="{% url car_detail 1 %}">Fantastaroza Speed</a><br>
+  <a href="{% url car_detail 2 %}">Cargo Transporter</a><br>
 
-<a href="{% url testmodel1_detail 1 %}">TestModel1 Object 1</a><br>
-<a href="{% url testmodel1_detail 2 %}">TestModel1 Object 2</a><br>
-<br>
-<a href="{% url testmodel2_detail 1 %}">TestModel2 Object 1</a><br>
-<a href="{% url testmodel2_detail 2 %}">TestModel2 Object 2</a><br>
-
-
+  <h2>Review a restaurant</h2>
+  <a href="{% url restaurant_detail 1 %}">Restaurant Example on the beach</a><br>
+  <a href="{% url restaurant_detail 2 %}">Imbiss NE</a><br>
 
 {% endblock %}

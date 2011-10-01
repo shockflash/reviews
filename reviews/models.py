@@ -12,14 +12,30 @@ from reviews.managers import ReviewManager
 REVIEW_MAX_LENGTH = getattr(settings,'REVIEW_MAX_LENGTH',3000)
 
 class Category(models.Model):
-    code = models.CharField(_('category code'), max_length = 200)
+    """
+    A category of reviews.
+
+    Example:
+    If you want to review, a category could be "Sport cars", another one could
+    be "Pick-ups".
+    """
+    code = models.CharField(_('category code'), max_length = 200, unique = True)
 
     class Meta:
         verbose_name = _('review category')
         verbose_name_plural = _('review categories')
 
 class CategorySegment(models.Model):
+    """
+    A single segment in a category.
+
+    Example:
+    If you want to review, a category could be "Sport cars", and segments there
+    could be "Handling", "Top-Speed" and "Design".
+    """
+
     title    = models.CharField(max_length = 200)
+    position = models.IntegerField(default=0) # used in the form
     category = models.ForeignKey(Category)
 
     class Meta:
@@ -68,6 +84,8 @@ class Review(BaseReviewAbstractModel):
     user_email  = models.EmailField(_("user's email address"), blank=True)
 
     text = models.TextField(_('review'), max_length=REVIEW_MAX_LENGTH)
+
+    category   = models.ForeignKey(Category, verbose_name=_('review category'))
 
     # Metadata about the review
     submit_date = models.DateTimeField(_('date/time submitted'), default=None)

@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Preview your review" %}{% endblock %}
+
+{% block content %}
+  {% include "reviews/form.html" %}
+{% endblock %}

@@ -3,30 +3,38 @@
 
 {% block content %}
 
-<p>Object: {{ object.name }}</p>
+<a href="{% url index %}">Back</a>
+
+<h2 class="title">{{ object.name }}</h2>
+
+{% get_review_count for object as count %}
+<p>Reviews: {{ count }}</p>
+
+<p><a href="javascript: document.getElementById('writereview').style.display='block';">Write your own review!</a></p>
+
+<div class="writereview" id="writereview" style="display: none">
+<b>Write a review:</b>
+{% render_review_form for object category cat %}
+</div>
 
 
-<h1>render_review_form</h1>
-{% render_review_form for object category 'example1' %}
 
+<h2>Reviews:</h2>
 
-<h1>get_review_form</h1>
-{% get_review_form for object category 'ex' as form %}
-{{ form.as_p }}
-
-
-<h1>get_review_count</h1>
-1. direct: {% get_review_count for object %}<br>
-2. with "as": {% get_review_count for object as count %} said {{ count }}<br>
-
-
-<h1>get_review_list</h1>
-{% get_review_list for object as review_list %}
-
-{% for review in review_list %}
-  Review: {{ review.text }}
-{% endfor %}
-
+{% if count > 0 %}
+  {% get_review_list for object as review_list %}
+  {% for review in review_list %}
+    <div class="reviewpreview {% if forloop.first %}first{% endif %} {% if forloop.last %}last{% endif %}">
+      From: <a href="mailto:{{ review.user_email }}">{{ review.user_name }}</a><br>
+      Date: {{ review.submit_date }}<br>
+      <br>
+      {{ review.text|linebreaksbr|truncatewords:50 }}<br>
+      <a href="{% url review_detail review.id %}">Show full review</a>
+    </div>
+  {% endfor %}
+{% else %}
+  No reviews found. <a href="javascript: document.getElementById('writereview').style.display='block';">Write a review</a>
+{% endif %}
 
 
 {% endblock %}
