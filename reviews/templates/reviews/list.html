@@ -1,0 +1,10 @@
+<dl id="comments">
+  {% for review in review_list %}
+    <dt id="c{{ review.id }}">
+        {{ review.submit_date }} - {{ review.name }}
+    </dt>
+    <dd>
+        <p>{{ review.text }}</p>
+    </dd>
+  {% endfor %}
+</dl>

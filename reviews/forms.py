@@ -16,6 +16,8 @@ from reviews import signing
 
 REVIEW_MAX_LENGTH = getattr(settings,'REVIEW_MAX_LENGTH', 3000)
 REVIEWS_ALLOW_PROFANITIES = getattr(settings,'REVIEWS_ALLOW_PROFANITIES', False)
+REVIEW_MIN_RATING = getattr(settings,'REVIEW_MIN_RATING', 1)
+REVIEW_MAX_RATING = getattr(settings,'REVIEW_MAX_RATING', 5)
 
 class SignedCharField(forms.CharField):
     """
@@ -162,6 +164,21 @@ class ReviewDetailsForm(ReviewSecurityForm):
     category of the review, which is not good """
     category      = SignedCharField(max_length=200, widget=forms.HiddenInput)
 
+    def __init__(self, *args, **kwargs):
+        """
+        Overwrites ReviewSecurityForm init to add support for the segment
+        formset.
+        Later in the template or code, use {formvariable}.formset to access
+        the formset
+        """
+        initial = kwargs.get('initial', [])
+        category = kwargs.get('category', None)
+        data = kwargs.get('data', None)
+
+        self.formset = self.get_segment_formset(data, initial=initial, category=category)
+
+        super(ReviewDetailsForm, self).__init__(*args, **kwargs)
+
     def get_review_object(self):
         """
         Return a new (unsaved) review object based on the information in this
@@ -207,18 +224,38 @@ class ReviewDetailsForm(ReviewSecurityForm):
             is_removed   = False,
         )
 
-    def get_segment_formset(self):
-        cat = Category.objects.get(code=self.category)
+    def get_segment_objects(self):
+        """
+        Returns a list of (unsaved) review segment objects based on the
+        information in this form.
+        """
+        segments = []
+        for form in self.formset:
+            segments.append(form.get_segment_object())
 
-        initial = []
+        return segments
+
+    def get_segment_formset(self, data = {}, initial=[], category = None):
+
+        # if category is not a parameter, we try to get it from the instance
+        # itself. Normaly this function is called in the init-constructor of
+        # the class, where it is called with category as parameter. If not,
+        # then self.category is availabel as alternative
+        if not category:
+            category = self.category
+
+        cat = Category.objects.get(code=category)
+
         for segment in cat.categorysegment_set.order_by('position'):
             initial.append({
-                  'segment_pk': segment.id,
+                  'categorysegment_id': segment.id,
                   'text': ''
                 })
 
+
+
         ReviewSegmentFormSet = formset_factory(ReviewSegmentForm, extra=0)
-        formset = ReviewSegmentFormSet(initial=initial)
+        formset = ReviewSegmentFormSet(data, initial=initial)
 
         return formset
 
@@ -236,7 +273,7 @@ class ReviewDetailsForm(ReviewSecurityForm):
             user_email = new.user_email,
         )
         for old in possible_duplicates:
-            if old.submit_date.date() == new.submit_date.date() and old.review == new.review:
+            if old.submit_date.date() == new.submit_date.date() and old.text == new.text:
                 return old
 
         return new
@@ -257,7 +294,7 @@ class ReviewForm(ReviewDetailsForm):
         return value
 
 class ReviewSegmentBaseForm(forms.Form):
-    segment_pk     = forms.CharField(widget=forms.HiddenInput)
+    categorysegment_id     = forms.CharField(widget=forms.HiddenInput)
 
     def get_categorysegment(self):
         """
@@ -268,13 +305,56 @@ class ReviewSegmentBaseForm(forms.Form):
         if 'segment' in self:
             return self.segment
 
-        self.segment = CategorySegment.objects.get(pk=self.initial['segment_pk'])
+        self.segment = CategorySegment.objects.get(pk=self.initial['categorysegment_id'])
         return self.segment
 
 class ReviewSegmentForm(ReviewSegmentBaseForm):
-    rating = forms.IntegerField(label=_('Rating'))
+    rating = forms.IntegerField(label=_('Rating'), min_value = REVIEW_MIN_RATING,
+                                max_value = REVIEW_MAX_RATING)
     text   = forms.CharField(label=_('Review'), widget=forms.Textarea,
-                            max_length=REVIEW_MAX_LENGTH)
+                             required=False, max_length=REVIEW_MAX_LENGTH)
 
     def clean_text(self):
         return clean_text(self.cleaned_data["text"])
+
+
+    def get_segment_object(self):
+        """
+        Returns a new (unsaved) review segment object based on the information
+        in this form. Assumes that the form is already validated. No validation is
+        done, should be checked in get_review_object already.
+        """
+
+        categorysegment_id = self.initial['categorysegment_id']
+
+        SegmentModel = self.get_segment_model()
+        new = SegmentModel(**self.get_segment_create_data(categorysegment_id))
+
+        return new
+
+
+    def get_segment_model(self):
+        """
+        Returns the Review Segment model used with this form. Subclass in custom
+        review apps should overwrite this and get_segment_create_data to provide
+        custom segment models.
+        """
+
+        if not self.is_valid():
+            raise ValueError("get_segment_model may only be called on valid forms")
+
+        return ReviewSegment
+
+    def get_segment_create_data(self, categorysegment_id):
+        """
+        Returns the dict of data to be used to create a review. Subclasses in
+        custom review apps that override get_review_model can override this
+        method to add extra fields onto a custom review model.
+        """
+
+        # todo fill dict with right values
+        return dict(
+            segment_id = self.initial['categorysegment_id'],
+            text = self.cleaned_data["text"],
+            rating = self.cleaned_data["rating"],
+        )

@@ -1,0 +1,11 @@
+<!-- This file is used in entry.html render_review_list as custom template -->
+
+{% for review in review_list %}
+  <div class="reviewpreview {% if forloop.first %}first{% endif %} {% if forloop.last %}last{% endif %}">
+    From: <a href="mailto:{{ review.user_email }}">{{ review.user_name }}</a><br>
+    Date: {{ review.submit_date }}<br>
+    <br>
+    {{ review.text|linebreaksbr|truncatewords:50 }}<br>
+    <a href="{% url review_detail review.id %}">Show full review</a>
+  </div>
+{% endfor %}

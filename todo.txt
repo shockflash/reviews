@@ -1,4 +1,3 @@
 
-1. Add views
-2. extend form to show sub-elements for review segments
-3. Add missing template tags
+1. render_review_toplist & get_review_toplist
+2. translations?

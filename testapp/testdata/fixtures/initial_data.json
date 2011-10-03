@@ -1,0 +1,413 @@
+[
+
+
+    {
+        "pk": 1,
+        "model": "sites.site",
+        "fields": {
+            "domain": "example.com",
+            "name": "example.com"
+        }
+    },
+    {
+        "pk": 1,
+        "model": "reviews.category",
+        "fields": {
+            "code": "Car"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "reviews.category",
+        "fields": {
+            "code": "Restaurant"
+        }
+    },
+    {
+        "pk": 1,
+        "model": "reviews.categorysegment",
+        "fields": {
+            "category": 1,
+            "position": 1,
+            "title": "Design"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "reviews.categorysegment",
+        "fields": {
+            "category": 1,
+            "position": 2,
+            "title": "Handling"
+        }
+    },
+    {
+        "pk": 3,
+        "model": "reviews.categorysegment",
+        "fields": {
+            "category": 2,
+            "position": 1,
+            "title": "Food"
+        }
+    },
+    {
+        "pk": 5,
+        "model": "reviews.categorysegment",
+        "fields": {
+            "category": 2,
+            "position": 2,
+            "title": "Service"
+        }
+    },
+    {
+        "pk": 6,
+        "model": "reviews.categorysegment",
+        "fields": {
+            "category": 2,
+            "position": 3,
+            "title": "Ambience"
+        }
+    },
+    {
+        "pk": 1,
+        "model": "reviews.review",
+        "fields": {
+            "category": 1,
+            "submit_date": "2011-10-02 15:18:43",
+            "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consequat, dolor in porttitor tristique, elit sapien semper sapien, non sodales nunc metus vitae justo. Curabitur nec ipsum sit amet quam lacinia commodo. Fusce eleifend, velit ut euismod tempus, orci nisl scelerisque justo, nec aliquam dolor enim ut lorem. Nulla a erat ultricies nunc consectetur elementum. Vestibulum ut sem nec sem condimentum molestie non ut turpis. Nullam fringilla sem ac tortor gravida aliquet. Donec ullamcorper mauris vitae enim luctus viverra vel at diam. Nam eget quam magna, et dictum velit. Cras porta imperdiet facilisis. \r\n\r\nNam bibendum auctor quam ut molestie.",
+            "object_pk": "1",
+            "site": 1,
+            "ip_address": "192.168.0.23",
+            "is_removed": false,
+            "user": null,
+            "content_type": 14,
+            "is_public": true,
+            "user_name": "Lars Tester",
+            "user_email": "lars@test.test"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "reviews.review",
+        "fields": {
+            "category": 1,
+            "submit_date": "2011-10-02 15:19:40",
+            "text": "Praesent a viverra tortor. Morbi adipiscing, augue vel gravida ultrices, quam ipsum interdum purus, in tempor risus magna eget nulla. Praesent eu nunc ante, vel tristique ligula. Nunc scelerisque tincidunt erat ut scelerisque. Ut quis lorem metus, vitae lacinia diam. Aliquam tincidunt imperdiet est sagittis euismod. \r\n\r\nNam nibh justo, volutpat vitae mattis ut, tempus sit amet dui. Pellentesque ut dolor odio. Integer volutpat quam ipsum, vitae accumsan ante. Aliquam vehicula ullamcorper elit, a cursus augue fermentum id. Praesent turpis ante, tincidunt vitae euismod vestibulum, sodales a ipsum. Nullam eros elit, condimentum non fringilla sed, ultrices vitae erat.\r\n\r\nPraesent semper pharetra tellus nec aliquam. Phasellus mauris mauris, blandit ac commodo quis, vulputate vel odio. Sed nec gravida turpis. In porttitor erat eu massa eleifend et volutpat ante viverra. Ut nec dui massa, in scelerisque odio. Praesent nec varius erat. \r\n\r\nPraesent vitae dui urna. Nulla ornare dignissim leo, non pulvinar urna volutpat a. \r\n\r\nCum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Fusce id quam erat. Praesent viverra eros non velit fringilla molestie. Nullam ultrices, nulla nec aliquam iaculis, nulla enim laoreet lacus, et pharetra diam leo facilisis nisi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean rhoncus egestas ligula non posuere.",
+            "object_pk": "1",
+            "site": 1,
+            "ip_address": "192.168.0.23",
+            "is_removed": false,
+            "user": null,
+            "content_type": 14,
+            "is_public": true,
+            "user_name": "Mario Must",
+            "user_email": "mario@test.test"
+        }
+    },
+    {
+        "pk": 3,
+        "model": "reviews.review",
+        "fields": {
+            "category": 1,
+            "submit_date": "2011-10-02 15:20:55",
+            "text": "Integer varius faucibus risus, eget mattis dolor aliquam vel. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus scelerisque sollicitudin velit a imperdiet. Curabitur tristique sapien a dui gravida et dapibus justo ornare. Mauris ut elit eget velit bibendum dapibus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nunc risus orci, tincidunt nec adipiscing at, luctus non elit. Integer in pharetra tortor. Nunc quis elementum lectus. Sed dignissim varius accumsan. Praesent blandit dolor non nulla ultrices quis vulputate arcu congue. Vestibulum nec mi id risus scelerisque varius ac eu libero.\r\n\r\nNunc velit magna, ultricies nec viverra pulvinar, posuere ac felis. Nulla urna magna, aliquam a aliquet a, porttitor dapibus ante. Nullam id arcu risus, vel tristique dui. Morbi blandit dapibus odio, quis interdum risus vulputate sed. Duis porta vestibulum neque, in ullamcorper lorem rutrum ut. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nam fermentum dictum dui et aliquet. Ut vel orci id ligula faucibus rhoncus. Vivamus a turpis mi, ac suscipit odio. Curabitur ornare laoreet felis at aliquet. Vivamus eget metus at risus tempus sagittis. Etiam augue libero, vulputate a sollicitudin id, ornare in ipsum. Nam feugiat imperdiet sapien, vel facilisis nisl interdum in. Aenean pharetra nulla in ipsum cursus volutpat. In hac habitasse platea dictumst.\r\n\r\nAliquam erat volutpat. Ut nisl orci, convallis eget aliquet nec, mollis id nisl. In viverra ornare turpis, ut tristique enim pulvinar commodo. Nunc elit nulla, pellentesque sed pharetra sit amet, vulputate bibendum odio. Curabitur vehicula pellentesque quam ut vestibulum. Suspendisse euismod, dui at fringilla molestie, ipsum sem sagittis arcu, sit amet dapibus est elit a libero. Aenean eu sem quam. Donec aliquam, sem sit amet egestas suscipit, sapien odio sollicitudin elit, in varius justo quam et dui. Sed commodo sem non justo dignissim vel scelerisque ante vulputate. Vestibulum massa quam, tempor non vestibulum eget, ornare non diam. Integer arcu elit, varius quis laoreet a, feugiat quis risus.",
+            "object_pk": "1",
+            "site": 1,
+            "ip_address": "192.168.0.23",
+            "is_removed": false,
+            "user": null,
+            "content_type": 14,
+            "is_public": true,
+            "user_name": "Nicole Have",
+            "user_email": "nicole@test.test"
+        }
+    },
+    {
+        "pk": 4,
+        "model": "reviews.review",
+        "fields": {
+            "category": 1,
+            "submit_date": "2011-10-02 15:22:24",
+            "text": "Vivamus eget tellus tortor. Mauris accumsan sollicitudin diam vitae elementum. Nunc accumsan ullamcorper enim. Donec sed scelerisque augue. Maecenas a turpis nec dolor cursus semper. Sed id felis leo, sed vulputate neque. Nulla facilisi. Pellentesque semper scelerisque enim, hendrerit fringilla ante fringilla a. Pellentesque ultricies, turpis at posuere iaculis, quam sapien ultrices quam, ut molestie diam diam id est. Ut sagittis, quam eget iaculis aliquam, erat ante posuere neque, eget molestie eros nulla non justo. Maecenas placerat faucibus massa eu ornare. Praesent feugiat massa metus, ac lacinia orci. Phasellus erat augue, euismod quis congue non, auctor vitae sapien. Praesent faucibus lectus a mi viverra suscipit.",
+            "object_pk": "2",
+            "site": 1,
+            "ip_address": "192.168.0.23",
+            "is_removed": false,
+            "user": null,
+            "content_type": 14,
+            "is_public": true,
+            "user_name": "Edward Tester",
+            "user_email": "edward@test.test"
+        }
+    },
+    {
+        "pk": 5,
+        "model": "reviews.review",
+        "fields": {
+            "category": 2,
+            "submit_date": "2011-10-02 15:23:22",
+            "text": "Donec id quam sed neque aliquet luctus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras lobortis mauris in urna congue iaculis. In semper, sapien quis elementum volutpat, dolor lorem ullamcorper nunc, vitae mattis mauris tortor non erat. Duis ornare diam ut nisl eleifend porta. Sed id metus justo. Nullam nec magna libero. Curabitur non commodo lectus. Maecenas a ultricies arcu. Phasellus at lacus sed sapien mattis aliquet et ac dui. Pellentesque quam dui, facilisis sed placerat a, eleifend at ante. Cras sagittis placerat consectetur. Maecenas at purus elit. Morbi ipsum dolor, varius vel tristique eget, lacinia vitae elit. Cras viverra convallis magna, blandit aliquet enim facilisis eget. Vestibulum diam justo, gravida eu facilisis eu, tristique vestibulum nulla.",
+            "object_pk": "1",
+            "site": 1,
+            "ip_address": "192.168.0.23",
+            "is_removed": false,
+            "user": null,
+            "content_type": 15,
+            "is_public": true,
+            "user_name": "Rest Orant",
+            "user_email": "rest@test.test"
+        }
+    },
+    {
+        "pk": 6,
+        "model": "reviews.review",
+        "fields": {
+            "category": 2,
+            "submit_date": "2011-10-02 15:46:07",
+            "text": "Vivamus at mi id justo sodales sollicitudin. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ut est tempor tellus luctus adipiscing eget vel lectus. Cras laoreet, augue sed ornare aliquet, turpis libero placerat arcu, ac fringilla mi diam vel nibh. Mauris arcu sem, tempor non adipiscing sed, condimentum non ipsum. Nam at erat odio, eget tempus justo. Donec vitae libero risus. Maecenas nunc eros, laoreet nec dapibus sed, euismod a orci. Duis volutpat ligula at leo aliquam posuere.\r\n\r\nNam dignissim cursus nisl, sed molestie orci accumsan eleifend. Nullam quis viverra tellus. Nunc commodo, velit at malesuada facilisis, risus erat pulvinar sem, a fermentum eros tellus ac urna. Morbi vehicula nisi in urna pharetra quis aliquam sapien pulvinar. Maecenas iaculis mi et neque fringilla nec feugiat massa imperdiet. Donec vitae diam justo, id sodales eros. Vivamus volutpat eros placerat nunc cursus sit amet elementum urna facilisis. Sed nunc odio, elementum in facilisis vel, pretium congue sapien. Sed eleifend dui sed elit interdum ut porta leo vestibulum.\r\n\r\nNullam semper sodales elit, sed tincidunt risus placerat vel. In consequat luctus nisi, vel scelerisque nibh viverra at. Donec nec libero vitae ligula pulvinar fermentum eu condimentum nisi. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec malesuada dolor ut sapien dignissim ultricies blandit turpis rhoncus. Quisque a turpis purus, ut lacinia magna. Nullam facilisis mollis nisl, et varius tellus adipiscing vel. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris varius auctor molestie. Etiam blandit magna nec elit scelerisque et viverra orci adipiscing. Integer facilisis velit vel nunc ultrices sodales.\r\n",
+            "object_pk": "2",
+            "site": 1,
+            "ip_address": "192.168.0.23",
+            "is_removed": false,
+            "user": null,
+            "content_type": 15,
+            "is_public": true,
+            "user_name": "Helen Hell",
+            "user_email": "helen@test.test"
+        }
+    },
+    {
+        "pk": 7,
+        "model": "reviews.review",
+        "fields": {
+            "category": 2,
+            "submit_date": "2011-10-02 15:46:45",
+            "text": "Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Pellentesque ac diam non dolor tincidunt condimentum semper non enim. Pellentesque bibendum eleifend placerat. Vestibulum vulputate, purus ut tincidunt aliquam, ligula odio suscipit purus, a tincidunt neque ante non urna. Aliquam bibendum tincidunt molestie. Duis eget leo sed risus porttitor ullamcorper. Curabitur porta scelerisque turpis sed viverra.\r\n\r\nAliquam metus dolor, faucibus sit amet mollis vel, scelerisque quis augue. Vivamus blandit odio venenatis est suscipit feugiat. Quisque volutpat diam fringilla orci varius egestas. Aliquam tellus ante, iaculis eget faucibus sit amet, aliquam et nulla. Cras vel sem nec purus euismod rhoncus eget bibendum odio. Sed sit amet risus at purus mattis rhoncus. Quisque tempus nibh sit amet nisl facilisis eu facilisis massa iaculis.\r\n",
+            "object_pk": "2",
+            "site": 1,
+            "ip_address": "192.168.0.23",
+            "is_removed": false,
+            "user": null,
+            "content_type": 15,
+            "is_public": true,
+            "user_name": "Shorty Answer",
+            "user_email": "shorty@test.test"
+        }
+    },
+    {
+        "pk": 1,
+        "model": "reviews.reviewsegment",
+        "fields": {
+            "rating": 4,
+            "review": 1,
+            "segment": 1,
+            "text": "Nam at lorem velit. Duis malesuada convallis lacus, eu volutpat lorem rhoncus id. Donec lacinia mi vitae nunc elementum luctus"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "reviews.reviewsegment",
+        "fields": {
+            "rating": 3,
+            "review": 1,
+            "segment": 2,
+            "text": "Integer eget metus hendrerit neque suscipit vestibulum lobortis eu nulla. Maecenas commodo mollis eros sed semper. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vivamus lorem tortor, aliquam ut bibendum id, aliquet vitae nisl. Nunc non lorem mauris, quis sagittis risus."
+        }
+    },
+    {
+        "pk": 3,
+        "model": "reviews.reviewsegment",
+        "fields": {
+            "rating": 3,
+            "review": 2,
+            "segment": 1,
+            "text": "Suspendisse potenti. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam consequat ornare nisl ac molestie. Ut convallis fermentum nunc nec ornare. Duis in ligula vel ante eleifend mollis. Nunc sapien dolor, pulvinar vitae ultrices nec, interdum sed quam. Fusce suscipit, felis a eleifend tincidunt, nulla nunc aliquet enim, id vehicula felis libero fringilla turpis. Nunc vel ipsum ligula. Vestibulum adipiscing euismod erat vel vulputate. Morbi et nulla ipsum. Phasellus pretium pulvinar blandit. Ut lacinia dui sit amet orci aliquam sed eleifend ante dictum.\r\n"
+        }
+    },
+    {
+        "pk": 4,
+        "model": "reviews.reviewsegment",
+        "fields": {
+            "rating": 3,
+            "review": 2,
+            "segment": 2,
+            "text": " Fusce suscipi"
+        }
+    },
+    {
+        "pk": 5,
+        "model": "reviews.reviewsegment",
+        "fields": {
+            "rating": 5,
+            "review": 3,
+            "segment": 1,
+            "text": "oin lacus nunc, mattis id pretium ac, egestas rutrum dolor. Praesent quis nisi dui. Praesent sit amet rutrum arcu. Maecenas volutpat volutpat sagittis. Vestibulum semper lobortis est. Quisque feugiat cursus risus a pharetra. Cras sed dolor a est varius placerat vel ac nibh. Nullam tincidunt mauris sit amet quam placerat dignissim. Phasellus imperdiet sem a libero malesuada porta. Integer vitae rhoncus mauris. Morbi felis lacus, eleifend ultricies feugiat vitae, adipiscing vitae ligula. Aenean interdum tellus vel felis dapibus et cursus ipsum congue. Nullam faucibus arcu lacus. Duis orci nisl, mattis in eleifend ac, accumsan vitae eros. Sed aliquam tempus risus non varius. Fusce nec cursus est.\r\n\r\nFusce lacus eros, dignissim ut posuere sit amet, aliquet at nisl. Sed tristique erat ac nisi sodales quis adipiscing ligula gravida. Nulla tempor ullamcorper nisl dictum egestas. Donec pulvinar tellus a tortor lobortis a posuere orci tristique. Phasellus interdum facilisis libero, a fringilla velit adipiscing vitae. Nulla aliquet volutpat lectus adipiscing commodo. Pellentesque sodales placerat placerat.\r\n\r\nInteger iaculis aliquam fringilla. Quisque vel velit sit amet orci varius porta ut eu enim. Suspendisse lacinia orci odio. Fusce purus turpis, accumsan quis viverra et, hendrerit et purus. Cras a justo est, at euismod felis. Quisque at erat est, eu sollicitudin eros. Donec sit amet volutpat sapien. Aenean non felis vel felis rhoncus accumsan. Aenean id dui elit, sit amet gravida justo. Sed eget rhoncus nulla. Vivamus facilisis risus eget nibh egestas hendrerit. Vivamus fringilla purus in nisi scelerisque blandit. Quisque at tellus diam.\r\n\r\nSuspendisse turpis nisl, suscipit non eleifend quis, bibendum euismod augue. Donec egestas purus vel orci porttitor sit amet convallis ante sagittis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nam lacus mi, sollicitudin et tempor sit amet, elementum eu lorem. Cras a gravida mi. Pellentesque sed lorem nisi. Cras nec metus non quam eleifend consectetur in vel urna. Donec sed placerat lacus. Ut nec velit libero. Proin justo ante, rhoncus pharetra porta nec, ornare quis urna. Ut ut erat quam. Phasellus sem dui, rhoncus eget porttitor eu, consequat in tortor. Pellentesque suscipit nibh sit amet lorem fermentum ut molestie est hendrerit. Cras interdum commodo consectetur."
+        }
+    },
+    {
+        "pk": 6,
+        "model": "reviews.reviewsegment",
+        "fields": {
+            "rating": 5,
+            "review": 3,
+            "segment": 2,
+            "text": "Cras nisl sem, elementum ac posuere a, placerat a eros. Phasellus vel ante id ipsum tempus aliquet. Donec sollicitudin eleifend ipsum a dictum. Pellentesque suscipit rutrum luctus. Ut rhoncus lobortis mi vitae ornare. Nulla id massa lacus, in fringilla augue. Nam mattis justo nec risus accumsan rhoncus. Nunc a enim in ipsum faucibus faucibus ac ut justo. Praesent viverra libero in orci sagittis accumsan. Ut accumsan risus nec lectus egestas non egestas urna tempor. Ut libero neque, cursus vitae gravida sit amet, mattis sodales nunc. Ut in lorem sit amet velit interdum lobortis. Nam erat erat, malesuada sit amet rhoncus vitae, rhoncus ut dolor. Cras sit amet turpis metus. Sed placerat tincidunt nulla quis convallis.\r\n\r\nPraesent lobortis posuere mollis. Aenean eu odio non sem gravida convallis. In commodo, nisl et pretium vestibulum, metus velit mattis eros, ut rhoncus dui augue vitae nisi. Sed ac ipsum justo, et blandit libero. Nullam at facilisis ligula. Fusce consequat, nunc in euismod scelerisque, elit nisl pulvinar ante, nec pharetra turpis dolor at eros. Nulla consectetur, purus non sodales vestibulum, velit velit blandit libero, et luctus nisi felis vel ligula. Vivamus posuere dolor at odio dapibus mattis vestibulum nulla sodales. Praesent tempor tincidunt risus, id feugiat mi consectetur lacinia. Curabitur ultrices, leo et placerat posuere, risus turpis volutpat magna, quis facilisis ligula velit at odio. Pellentesque ullamcorper varius pulvinar.\r\n\r\nDuis pretium consectetur euismod. Nullam pellentesque diam eu magna sagittis eu aliquet tortor egestas. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean non metus in purus porta mollis. Proin libero justo, fringilla ultricies iaculis et, tempus non massa. Suspendisse vestibulum sagittis hendrerit. Morbi lacus leo, vestibulum tempor dignissim sed, elementum quis quam. Cras placerat, diam eget ullamcorper eleifend, velit dolor ultricies urna, a ullamcorper justo arcu vitae erat. Curabitur ante elit, fringilla at viverra id, pretium vitae elit. Morbi interdum turpis augue. Sed in auctor est. Quisque semper ipsum eget quam tincidunt luctus. Donec in augue dolor, a lacinia risus. Etiam eget risus felis, non egestas mi. Quisque commodo ipsum eget tortor luctus ut venenatis sapien porttitor. Praesent mattis fermentum felis, nec posuere odio tincidunt quis.\r\n\r\nNulla facilisi. Phasellus pretium vestibulum pretium. Maecenas id enim sed ligula eleifend ornare sit amet vel elit. Fusce ac placerat lorem. Nam dapibus venenatis turpis ut consectetur. Sed in elementum leo. Aliquam erat volutpat. Donec a ipsum lacus. Nullam fringilla, tellus quis faucibus pretium, orci velit eleifend velit, ut porttitor erat nisi eget dolor. Phasellus ultrices lectus eu nibh facilisis iaculis.\r\n"
+        }
+    },
+    {
+        "pk": 7,
+        "model": "reviews.reviewsegment",
+        "fields": {
+            "rating": 2,
+            "review": 4,
+            "segment": 1,
+            "text": "Etiam ultricies pulvinar pellentesque. Nam vehicula malesuada massa, vel facilisis nulla mattis nec. Aliquam quis lectus turpis, non malesuada massa. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum malesuada, magna et tristique vestibulum, orci nunc lobortis sapien, ac scelerisque purus nisi et ipsum. Duis ipsum lacus, eleifend sit amet placerat sit amet, hendrerit eget orci. Fusce et augue eu metus laoreet fermentum a eget eros. "
+        }
+    },
+    {
+        "pk": 8,
+        "model": "reviews.reviewsegment",
+        "fields": {
+            "rating": 4,
+            "review": 4,
+            "segment": 2,
+            "text": "Donec sit amet eros tincidunt tortor cursus rutrum quis id mauris. Sed ornare tincidunt mollis. Donec ac nulla eget odio vestibulum tristique. Quisque posuere hendrerit dolor id tempus. Proin consequat quam mollis elit sodales rutrum.\r\n"
+        }
+    },
+    {
+        "pk": 9,
+        "model": "reviews.reviewsegment",
+        "fields": {
+            "rating": 5,
+            "review": 5,
+            "segment": 3,
+            "text": "Aliquam metus dolor, faucibus sit amet mollis vel, scelerisque quis augue. Vivamus blandit odio venenatis est suscipit feugiat. Quisque volutpat diam fringilla orci varius egestas. Aliquam tellus ante, iaculis eget faucibus sit amet, aliquam et nulla. Cras vel sem nec purus euismod rhoncus eget bibendum odio. Sed sit amet risus at purus mattis rhoncus. Quisque tempus nibh sit amet nisl facilisis eu facilisis massa iaculis."
+        }
+    },
+    {
+        "pk": 10,
+        "model": "reviews.reviewsegment",
+        "fields": {
+            "rating": 3,
+            "review": 5,
+            "segment": 5,
+            "text": "Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Pellentesque ac diam non dolor tincidunt condimentum semper non enim. Pellentesque bibendum eleifend placerat. Vestibulum vulputate, purus ut tincidunt aliquam, ligula odio suscipit purus, a tincidunt neque ante non urna. Aliquam bibendum tincidunt molestie. Duis eget leo sed risus porttitor ullamcorper. Curabitur porta scelerisque turpis sed viverra."
+        }
+    },
+    {
+        "pk": 11,
+        "model": "reviews.reviewsegment",
+        "fields": {
+            "rating": 4,
+            "review": 5,
+            "segment": 6,
+            "text": "Aenean nisl est, accumsan non sagittis sed, pretium vel neque. Maecenas orci erat, semper non dictum at, lobortis eu tellus. Curabitur nunc tellus, dictum sit amet malesuada vitae, porttitor id dolor. Duis varius hendrerit lacus nec iaculis. Nullam vel lacus sapien. Maecenas nulla lorem, blandit quis rhoncus eu, molestie at nunc. Fusce vel convallis felis. Donec molestie tempor nisi, quis varius magna convallis non. Cras eget lacus ut justo tempus suscipit eget at quam."
+        }
+    },
+    {
+        "pk": 12,
+        "model": "reviews.reviewsegment",
+        "fields": {
+            "rating": 3,
+            "review": 6,
+            "segment": 3,
+            "text": "Aenean sed lacus id tellus ultricies consequat. Maecenas sed tristique purus. Fusce ultricies varius lorem a fringilla. Integer sit amet malesuada lectus. Cras turpis enim, sollicitudin id accumsan sed, dapibus sed lorem. Donec et erat venenatis odio tincidunt eleifend vitae ac nisl. Praesent et mauris nec metus placerat condimentum eu at quam. Proin venenatis commodo semper. Cras sit amet turpis arcu, id iaculis dui. Nam non risus pellentesque ligula consequat egestas ut id sapien. Duis scelerisque justo id libero egestas ut tincidunt leo luctus. Fusce imperdiet consectetur sem, feugiat sagittis nibh convallis sed. Nullam et odio erat. Curabitur sed dui ut odio imperdiet dapibus. Praesent mollis dui id mi hendrerit eu ornare diam facilisis."
+        }
+    },
+    {
+        "pk": 13,
+        "model": "reviews.reviewsegment",
+        "fields": {
+            "rating": 4,
+            "review": 6,
+            "segment": 5,
+            "text": "Proin interdum est at nulla bibendum ut rhoncus tortor consectetur. Maecenas massa arcu, ullamcorper a tincidunt eget, ornare vel elit. Sed tincidunt sodales purus et elementum. In faucibus semper aliquet. Mauris vulputate ultrices nibh quis auctor. Morbi mattis aliquet gravida. Curabitur fermentum quam et odio volutpat ut iaculis augue facilisis. Duis vitae lectus posuere ante convallis lobortis. \r\n\r\nNunc odio magna, tempor eget dignissim at, molestie non nibh. Vivamus blandit gravida diam, in eleifend metus facilisis sed. \r\nEtiam dictum enim at risus consectetur ac bibendum lacus congue. Proin eget elementum erat. Aliquam sed ante ac lectus imperdiet porttitor."
+        }
+    },
+    {
+        "pk": 14,
+        "model": "reviews.reviewsegment",
+        "fields": {
+            "rating": 5,
+            "review": 6,
+            "segment": 6,
+            "text": "Proin interdum est at nulla bibendum ut rhoncus tortor consectetur. "
+        }
+    },
+    {
+        "pk": 15,
+        "model": "reviews.reviewsegment",
+        "fields": {
+            "rating": 3,
+            "review": 7,
+            "segment": 3,
+            "text": "Maecenas massa arcu, ullamcorper a tincidunt eget, ornare vel elit."
+        }
+    },
+    {
+        "pk": 16,
+        "model": "reviews.reviewsegment",
+        "fields": {
+            "rating": 4,
+            "review": 7,
+            "segment": 5,
+            "text": "Placerat a eros. Phasellus vel ante id ipsum tempus aliquet. Donec sollicitudin eleifend ipsum a dictum."
+        }
+    },
+    {
+        "pk": 17,
+        "model": "reviews.reviewsegment",
+        "fields": {
+            "rating": 3,
+            "review": 7,
+            "segment": 6,
+            "text": "oin lacus nunc, mattis id pretium ac, egestas rutrum dolor."
+        }
+    },
+    {
+        "pk": 1,
+        "model": "testdata.car",
+        "fields": {
+            "name": "Fantastaroza Speed"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "testdata.car",
+        "fields": {
+            "name": "Cargo Transporter"
+        }
+    },
+    {
+        "pk": 1,
+        "model": "testdata.restaurant",
+        "fields": {
+            "name": "Restaurant Example on the beach"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "testdata.restaurant",
+        "fields": {
+            "name": "Imbiss NE"
+        }
+    },
+    {
+        "pk": 1,
+        "model": "auth.user",
+        "fields": {
+            "username": "admin",
+            "first_name": "",
+            "last_name": "",
+            "is_active": true,
+            "is_superuser": true,
+            "is_staff": true,
+            "last_login": "2010-11-05 17:50:27",
+            "groups": [],
+            "user_permissions": [],
+            "password": "sha1$a611b$26aabf7c9ed5db476983d54ec24ca84ea7e6ab45",
+            "email": "admin@admin.admin",
+            "date_joined": "2010-11-05 17:50:02"
+        }
+    }
+]

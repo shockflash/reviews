@@ -18,9 +18,18 @@ class Car(models.Model):
     def __unicode__(self):
         return self.name
 
+    @models.permalink
+    def get_absolute_url(self):
+        return ('car_detail', [str(self.id)])
+
+
 
 class Restaurant(models.Model):
     name = models.CharField(max_length = 100)
 
     def __unicode__(self):
         return self.name
+
+    @models.permalink
+    def get_absolute_url(self):
+        return ('restaurant_detail', [str(self.id)])

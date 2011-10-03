@@ -85,7 +85,7 @@ def post_review(request, next=None, using=None):
                 escape(str(form.security_errors())))
 
     # If there are errors or if we requested a preview show the review
-    if form.errors or preview:
+    if form.errors or not form.formset.is_valid() or preview:
         template_list = [
             # Now the usual directory based template heirarchy.
             "reviews/%s/%s/preview.html" % (model._meta.app_label, model._meta.module_name),
@@ -113,10 +113,14 @@ def post_review(request, next=None, using=None):
     if request.user.is_authenticated():
         review.user = request.user
 
+    # get the segments
+    segments = form.get_segment_objects()
+
     # Signal that the review is about to be saved
     responses = signals.review_will_be_posted.send(
         sender  = review.__class__,
         review = review,
+        segments = segments,
         request = request
     )
 
@@ -127,6 +131,10 @@ def post_review(request, next=None, using=None):
 
     # Save the review and signal that it was saved
     review.save()
+    for segment in segments:
+        segment.review = review
+        segment.save()
+
     signals.review_was_posted.send(
         sender  = review.__class__,
         review = review,

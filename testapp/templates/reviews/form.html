@@ -24,7 +24,9 @@ A default form.html is provider with the reviews app.
     {% endif %}
   {% endfor %}
 
-  {% for subForm in form.get_segment_formset %}
+  {{ form.formset.management_form }}
+
+  {% for subForm in form.formset %}
     <h3>{{ subForm.get_categorysegment.title }}</h3>
     {% for field in subForm %}
       {% if field.is_hidden %}

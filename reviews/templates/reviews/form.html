@@ -1,7 +1,7 @@
 
 {% load reviewtags i18n %}
 
-<form action="{% review_form_target %}" method="post">{% csrf_token %} 
+<form action="{% review_form_target %}" method="post">{% csrf_token %}
   {% if next %}<div><input type="hidden" name="next" value="{{ next }}" /></div>{% endif %}
   {% for field in form %}
     {% if field.is_hidden %}
@@ -16,7 +16,9 @@
     {% endif %}
   {% endfor %}
 
-  {% for subForm in form.get_segment_formset %}
+  {{ form.formset.management_form }}
+
+  {% for subForm in form.formset %}
     <b>Titel: {{ subForm.get_categorysegment.title }}</b><br>
     {% for field in subForm %}
       {% if field.is_hidden %}

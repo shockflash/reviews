@@ -22,8 +22,11 @@ class Category(models.Model):
     code = models.CharField(_('category code'), max_length = 200, unique = True)
 
     class Meta:
-        verbose_name = _('review category')
-        verbose_name_plural = _('review categories')
+        verbose_name = _('category')
+        verbose_name_plural = _('categories')
+
+    def __unicode__(self):
+        return self.code
 
 class CategorySegment(models.Model):
     """
@@ -39,8 +42,11 @@ class CategorySegment(models.Model):
     category = models.ForeignKey(Category)
 
     class Meta:
-        verbose_name = _('review category segment')
-        verbose_name_plural = _('review category segments')
+        verbose_name = _('category segment')
+        verbose_name_plural = _('category segments')
+
+    def __unicode__(self):
+        return self.title
 
 class BaseReviewAbstractModel(models.Model):
     """
@@ -52,7 +58,7 @@ class BaseReviewAbstractModel(models.Model):
     content_type   = models.ForeignKey(ContentType,
             verbose_name=_('content type'),
             related_name="content_type_set_for_%(class)s")
-    object_pk      = models.TextField(_('object ID'))
+    object_pk      = models.CharField(_('object ID'), max_length=2000)
     content_object = generic.GenericForeignKey(ct_field="content_type", fk_field="object_pk")
 
     # Metadata about the review
@@ -108,7 +114,7 @@ class Review(BaseReviewAbstractModel):
         verbose_name_plural = _('reviews')
 
     def __unicode__(self):
-        return "%s: %s..." % (self.name, self.text [:50])
+        return "%s: %s..." % (self.user_name, self.text [:50])
 
     def save(self, *args, **kwargs):
         if self.submit_date is None:
@@ -152,8 +158,9 @@ class Review(BaseReviewAbstractModel):
         self.user_email = val
     email = property(_get_email, _set_email, doc="The email of the user who posted this review")
 
-    def get_absolute_url(self, anchor_pattern="#c%(id)s"):
-        return self.get_content_object_url() + (anchor_pattern % self.__dict__)
+    @models.permalink
+    def get_absolute_url(self):
+        return ('reviews-review-detail', self.id)
 
     def get_as_text(self):
         """
