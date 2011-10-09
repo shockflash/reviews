@@ -42,6 +42,15 @@ def get_model():
     else:
         return Review
 
+def get_segment_model():
+    """
+    Returns the review model class.
+    """
+    if get_review_app_name() != DEFAULT_REVIEWS_APP and hasattr(get_review_app(), "get_segment_model"):
+        return get_review_app().get_segment_model()
+    else:
+        return ReviewSegment
+
 def get_form():
     """
     Returns the review ModelForm class.
@@ -50,6 +59,15 @@ def get_form():
         return get_review_app().get_form()
     else:
         return ReviewForm
+
+def get_segment_form():
+    """
+    Returns the review ModelForm class.
+    """
+    if get_review_app_name() != DEFAULT_REVIEWS_APP and hasattr(get_review_app(), "get_segment_form"):
+        return get_review_app().get_segment_form()
+    else:
+        return ReviewSegmentForm
 
 def get_form_target():
     """

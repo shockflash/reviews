@@ -81,3 +81,7 @@ own app on top of it, which replaces the form, models and views.
 
 Please have a look at the __init__.py file in the reviews directory. The system
 is the same as in the comments application.
+
+The testdata-app also contains an example, it extends the Review and ReviewSegmet
+models with one new field each. The forms are also changed.
+The templates in the testapp are using these fields.

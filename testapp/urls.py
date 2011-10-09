@@ -4,7 +4,7 @@ from django.contrib import admin
 from django.views.generic.simple import direct_to_template
 from django.views.generic.list_detail import object_detail
 from reviews.models import Review
-from testdata.models import Car, Restaurant
+from testdata.models import Car, Restaurant, TestReview
 
 
 admin.autodiscover()
@@ -33,7 +33,7 @@ urlpatterns = patterns('',
 
      # shows a detailed view of one single review
      (r'^review/(?P<object_id>\d+)/$', object_detail, {
-          'queryset': Review.objects.all(),
+          'queryset': TestReview.objects.all(),
           'template_name': 'review.html',
         },
         'review_detail'),

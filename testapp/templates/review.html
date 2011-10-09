@@ -12,13 +12,16 @@
 For: <a href="{{ object.content_object.get_absolute_url }}">{{ object.content_object.name }}</a><br> <!-- this works only because all our reviewed object have a name field!-->
 From: <a href="mailto:{{ object.user_email }}">{{ object.user_name }}</a><br>
 Date: {{ object.submit_date }}<br>
+Title: {{ object.title }}<br>
+Price: {{ object.price }}<br>
 <p class="reviewtext">
   {{ object.text|linebreaksbr }}
 </p>
 
 {% for segment in object.segments.all %}
 <h3>{{ segment.segment.title }}</h3>
-Rating: {{ segment.rating }}
+Rating: {{ segment.rating }}<br>
+Title: {{ segment.testreviewsegment.title }}
 <p class="reviewtext">
   {{ segment.text|linebreaksbr }}
 </p>

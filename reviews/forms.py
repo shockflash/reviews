@@ -153,10 +153,13 @@ class ReviewDetailsForm(ReviewSecurityForm):
     """
     Handles the specific details of the review (name, review, etc.).
     """
-    name          = forms.CharField(label=_("Name"), max_length=50)
-    email         = forms.EmailField(label=_("Email address"))
-    text          = forms.CharField(label=_('Review'), widget=forms.Textarea,
-                                    max_length=REVIEW_MAX_LENGTH)
+    name     = forms.CharField(label=_("Name"), max_length=50)
+    email    = forms.EmailField(label=_("Email address"))
+    title    = forms.CharField(label=_("Title"), max_length=200)
+    rating   = forms.IntegerField(label=_('Rating'), min_value = REVIEW_MIN_RATING,
+                                  max_value = REVIEW_MAX_RATING)
+    text     = forms.CharField(label=_('Review'), widget=forms.Textarea,
+                               max_length=REVIEW_MAX_LENGTH)
 
     """ SignedCharField is used to hold the category value, but with a digital
     signature attached. This way we can route it through the form, but can be
@@ -217,6 +220,8 @@ class ReviewDetailsForm(ReviewSecurityForm):
             user_name    = self.cleaned_data["name"],
             user_email   = self.cleaned_data["email"],
             text         = self.cleaned_data["text"],
+            title        = self.cleaned_data["title"],
+            rating       = self.cleaned_data["rating"],
             category     = Category.objects.get(code=self.cleaned_data["category"]),
             submit_date  = datetime.datetime.now(),
             site_id      = settings.SITE_ID,
@@ -235,6 +240,9 @@ class ReviewDetailsForm(ReviewSecurityForm):
 
         return segments
 
+    def get_segment_form(self):
+        return ReviewSegmentForm
+
     def get_segment_formset(self, data = {}, initial=[], category = None):
 
         # if category is not a parameter, we try to get it from the instance
@@ -252,9 +260,7 @@ class ReviewDetailsForm(ReviewSecurityForm):
                   'text': ''
                 })
 
-
-
-        ReviewSegmentFormSet = formset_factory(ReviewSegmentForm, extra=0)
+        ReviewSegmentFormSet = formset_factory(self.get_segment_form(), extra=0)
         formset = ReviewSegmentFormSet(data, initial=initial)
 
         return formset

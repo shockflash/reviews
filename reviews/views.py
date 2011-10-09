@@ -141,7 +141,7 @@ def post_review(request, next=None, using=None):
         request = request
     )
 
-    return next_redirect(data, next,review_done, c=review._get_pk_val())
+    return next_redirect(data, next, 'reviews-review-done', c=review._get_pk_val())
 
 review_done = confirmation_view(
     template = "reviews/posted.html",

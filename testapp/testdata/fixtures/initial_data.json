@@ -1,5 +1,33 @@
 [
 
+    {
+        "pk": 1,
+        "model": "testdata.car",
+        "fields": {
+            "name": "Fantastaroza Speed"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "testdata.car",
+        "fields": {
+            "name": "Cargo Transporter"
+        }
+    },
+    {
+        "pk": 1,
+        "model": "testdata.restaurant",
+        "fields": {
+            "name": "Restaurant Example on the beach"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "testdata.restaurant",
+        "fields": {
+            "name": "Imbiss NE"
+        }
+    },
 
     {
         "pk": 1,
@@ -9,6 +37,7 @@
             "name": "example.com"
         }
     },
+
     {
         "pk": 1,
         "model": "reviews.category",
@@ -23,6 +52,7 @@
             "code": "Restaurant"
         }
     },
+
     {
         "pk": 1,
         "model": "reviews.categorysegment",
@@ -68,6 +98,9 @@
             "title": "Ambience"
         }
     },
+
+
+
     {
         "pk": 1,
         "model": "reviews.review",
@@ -80,13 +113,15 @@
             "ip_address": "192.168.0.23",
             "is_removed": false,
             "user": null,
-            "content_type": 14,
+            "content_type": 16,
             "is_public": true,
             "user_name": "Lars Tester",
-            "user_email": "lars@test.test"
+            "user_email": "lars@test.test",
+            "rating": 4,
+            "title": "Consectetur adipiscing elit!"
         }
     },
-    {
+   {
         "pk": 2,
         "model": "reviews.review",
         "fields": {
@@ -98,10 +133,12 @@
             "ip_address": "192.168.0.23",
             "is_removed": false,
             "user": null,
-            "content_type": 14,
+            "content_type": 16,
             "is_public": true,
             "user_name": "Mario Must",
-            "user_email": "mario@test.test"
+            "user_email": "mario@test.test",
+            "rating": 5,
+            "title": "Morbi adipiscing"
         }
     },
     {
@@ -116,10 +153,12 @@
             "ip_address": "192.168.0.23",
             "is_removed": false,
             "user": null,
-            "content_type": 14,
+            "content_type": 16,
             "is_public": true,
             "user_name": "Nicole Have",
-            "user_email": "nicole@test.test"
+            "user_email": "nicole@test.test",
+            "rating": 5,
+            "title": "Mlass aptent taciti sociosqu"
         }
     },
     {
@@ -134,10 +173,12 @@
             "ip_address": "192.168.0.23",
             "is_removed": false,
             "user": null,
-            "content_type": 14,
+            "content_type": 16,
             "is_public": true,
             "user_name": "Edward Tester",
-            "user_email": "edward@test.test"
+            "user_email": "edward@test.test",
+            "rating": 4,
+            "title": "Donec sed scelerisque augue. Maecenas!"
         }
     },
     {
@@ -152,10 +193,12 @@
             "ip_address": "192.168.0.23",
             "is_removed": false,
             "user": null,
-            "content_type": 15,
+            "content_type": 17,
             "is_public": true,
             "user_name": "Rest Orant",
-            "user_email": "rest@test.test"
+            "user_email": "rest@test.test",
+            "rating": 1,
+            "title": "Lorem ipsum dolor sit amet"
         }
     },
     {
@@ -170,10 +213,12 @@
             "ip_address": "192.168.0.23",
             "is_removed": false,
             "user": null,
-            "content_type": 15,
+            "content_type": 17,
             "is_public": true,
             "user_name": "Helen Hell",
-            "user_email": "helen@test.test"
+            "user_email": "helen@test.test",
+            "rating": 2,
+            "title": "Justo sodales sollicitudin"
         }
     },
     {
@@ -188,12 +233,195 @@
             "ip_address": "192.168.0.23",
             "is_removed": false,
             "user": null,
-            "content_type": 15,
+            "content_type": 17,
             "is_public": true,
             "user_name": "Shorty Answer",
-            "user_email": "shorty@test.test"
+            "user_email": "shorty@test.test",
+            "rating": 3,
+            "title": "Class aptent"
         }
     },
+
+
+
+
+
+
+    {
+        "pk": 1,
+        "model": "testdata.testreview",
+        "fields": {
+            "price": 1323
+        }
+    },
+   {
+        "pk": 2,
+        "model": "testdata.testreview",
+        "fields": {
+            "price": 555
+        }
+    },
+    {
+        "pk": 3,
+        "model": "testdata.testreview",
+        "fields": {
+            "price": 34
+        }
+    },
+    {
+        "pk": 4,
+        "model": "testdata.testreview",
+        "fields": {
+            "price": 5551
+        }
+    },
+    {
+        "pk": 5,
+        "model": "testdata.testreview",
+        "fields": {
+            "price": 5155
+        }
+    },
+    {
+        "pk": 6,
+        "model": "testdata.testreview",
+        "fields": {
+            "price": 55
+        }
+    },
+    {
+        "pk": 7,
+        "model": "testdata.testreview",
+        "fields": {
+            "price": 99
+        }
+    },
+
+
+
+    {
+        "pk": 1,
+        "model": "testdata.testreviewsegment",
+        "fields": {
+            "title": "Suspendisse potenti. Nam ac"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "testdata.testreviewsegment",
+        "fields": {
+            "title": "Suspendisse potenti. Nam ac"
+        }
+    },
+    {
+        "pk": 3,
+        "model": "testdata.testreviewsegment",
+        "fields": {
+            "title": "Dolor sit amet"
+        }
+    },
+    {
+        "pk": 4,
+        "model": "testdata.testreviewsegment",
+        "fields": {
+            "title": "Suscipi  suscipi  suscipi!!"
+        }
+    },
+    {
+        "pk": 5,
+        "model": "testdata.testreviewsegment",
+        "fields": {
+            "title": "Praesent quis nisi dui"
+        }
+    },
+    {
+        "pk": 6,
+        "model": "testdata.testreviewsegment",
+        "fields": {
+            "title": "Cras"
+        }
+    },
+    {
+        "pk": 7,
+        "model": "testdata.testreviewsegment",
+        "fields": {
+            "title": "Nam vehicula malesuada. Suru!"
+        }
+    },
+    {
+        "pk": 8,
+        "model": "testdata.testreviewsegment",
+        "fields": {
+            "title": " Donec ac nulla eget odio vestibulum tristique"
+        }
+    },
+    {
+        "pk": 9,
+        "model": "testdata.testreviewsegment",
+        "fields": {
+            "title": "Vivamus..."
+        }
+    },
+    {
+        "pk": 10,
+        "model": "testdata.testreviewsegment",
+        "fields": {
+            "title": "Pellentesque ac diam non dolor tincidunt"
+        }
+    },
+    {
+        "pk": 11,
+        "model": "testdata.testreviewsegment",
+        "fields": {
+            "title": "Maecenas orci erat!"
+        }
+    },
+    {
+        "pk": 12,
+        "model": "testdata.testreviewsegment",
+        "fields": {
+            "title": "Maecenas sed"
+        }
+    },
+    {
+        "pk": 13,
+        "model": "testdata.testreviewsegment",
+        "fields": {
+            "title": "Bibendum ut rhoncus"
+        }
+    },
+    {
+        "pk": 14,
+        "model": "testdata.testreviewsegment",
+        "fields": {
+            "title": "Nulla bibendum"
+        }
+    },
+    {
+        "pk": 15,
+        "model": "testdata.testreviewsegment",
+        "fields": {
+            "title": "Maecenas massa"
+        }
+    },
+    {
+        "pk": 16,
+        "model": "testdata.testreviewsegment",
+        "fields": {
+            "title": "Tempus aliquet"
+        }
+    },
+    {
+        "pk": 17,
+        "model": "testdata.testreviewsegment",
+        "fields": {
+            "title": "Egestas rutrum dolor"
+        }
+    },
+
+
+
+
     {
         "pk": 1,
         "model": "reviews.reviewsegment",
@@ -364,36 +592,12 @@
             "text": "oin lacus nunc, mattis id pretium ac, egestas rutrum dolor."
         }
     },
+
+
+
+
     {
-        "pk": 1,
-        "model": "testdata.car",
-        "fields": {
-            "name": "Fantastaroza Speed"
-        }
-    },
-    {
-        "pk": 2,
-        "model": "testdata.car",
-        "fields": {
-            "name": "Cargo Transporter"
-        }
-    },
-    {
-        "pk": 1,
-        "model": "testdata.restaurant",
-        "fields": {
-            "name": "Restaurant Example on the beach"
-        }
-    },
-    {
-        "pk": 2,
-        "model": "testdata.restaurant",
-        "fields": {
-            "name": "Imbiss NE"
-        }
-    },
-    {
-        "pk": 1,
+        "pk": 9991,
         "model": "auth.user",
         "fields": {
             "username": "admin",

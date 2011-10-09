@@ -90,6 +90,8 @@ class Review(BaseReviewAbstractModel):
     user_email  = models.EmailField(_("user's email address"), blank=True)
 
     text = models.TextField(_('review'), max_length=REVIEW_MAX_LENGTH)
+    title = models.CharField(_('title'), max_length=200)
+    rating    = models.IntegerField(_('rating'))
 
     category   = models.ForeignKey(Category, verbose_name=_('review category'))
 

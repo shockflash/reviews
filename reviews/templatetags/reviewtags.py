@@ -62,6 +62,8 @@ class BaseHandler(Tag):
         if getattr(settings, 'REVIEWS_HIDE_REMOVED', True) and 'is_removed' in field_names:
             qs = qs.filter(is_removed=False)
 
+        qs = qs.order_by('-id')
+
         return qs
 
     def handle_result(self, context, kwargs, rs):
@@ -230,6 +232,8 @@ class RenderReviewList(RenderListHandler):
 
         context.push()
         liststr = render_to_string(template_search_list, {
+                    "object": object_expr,
+                    "category": category,
                     "review_list" : qs.all()
                   }, context)
         context.pop()
