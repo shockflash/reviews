@@ -19,6 +19,15 @@ REVIEWS_ALLOW_PROFANITIES = getattr(settings,'REVIEWS_ALLOW_PROFANITIES', False)
 REVIEW_MIN_RATING = getattr(settings,'REVIEW_MIN_RATING', 1)
 REVIEW_MAX_RATING = getattr(settings,'REVIEW_MAX_RATING', 5)
 
+RATING_CHOICES = (
+    ('1', 'Very poor'),
+    ('2', 'Not that bad'),
+    ('3', 'Average'),
+    ('4', 'Good'),
+    ('5', 'Perfect'),
+)
+
+
 class SignedCharField(forms.CharField):
     """
     SignedCharField is a normal char field, but the content is signed with
@@ -156,8 +165,7 @@ class ReviewDetailsForm(ReviewSecurityForm):
     name     = forms.CharField(label=_("Name"), max_length=50)
     email    = forms.EmailField(label=_("Email address"))
     title    = forms.CharField(label=_("Title"), max_length=200)
-    rating   = forms.IntegerField(label=_('Rating'), min_value = REVIEW_MIN_RATING,
-                                  max_value = REVIEW_MAX_RATING)
+    rating   = forms.ChoiceField(label=_('Rating'), choices=RATING_CHOICES)
     text     = forms.CharField(label=_('Review'), widget=forms.Textarea,
                                max_length=REVIEW_MAX_LENGTH)
 
@@ -315,8 +323,7 @@ class ReviewSegmentBaseForm(forms.Form):
         return self.segment
 
 class ReviewSegmentForm(ReviewSegmentBaseForm):
-    rating = forms.IntegerField(label=_('Rating'), min_value = REVIEW_MIN_RATING,
-                                max_value = REVIEW_MAX_RATING)
+    rating = forms.ChoiceField(label=_('Rating'), choices=RATING_CHOICES)
     text   = forms.CharField(label=_('Review'), widget=forms.Textarea,
                              required=False, max_length=REVIEW_MAX_LENGTH)
 
