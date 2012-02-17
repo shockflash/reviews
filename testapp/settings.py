@@ -131,6 +131,7 @@ INSTALLED_APPS = (
 
     'reviews',
     'testdata',
+    'south',
 )
 
 REVIEWS_APP = 'testdata'
