@@ -30,7 +30,7 @@ class BaseHandler(Tag):
 
         # used in rendering lists
         'offset',   Argument('offset', required=False),
-        'limit',    Argument('offset', required=False),
+        'limit',    Argument('limit', required=False),
 
         # used in render_* to set the template
         'with',     Argument('with', required=False, resolve=False),
